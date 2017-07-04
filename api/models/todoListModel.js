@@ -3,22 +3,22 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var TaskSchema = new Schema({
+var StudentSchema = new Schema({
   name: {
     type: String,
-    Required: 'Kindly enter the name of the task'
+    Required: 'Kindly enter the name of the Student'
   },
-  Created_date: {
-    type: Date,
-    default: Date.now
+  average: {
+    type: Number,
+    default: 0
   },
   status: {
     type: [{
       type: String,
-      enum: ['pending', 'ongoing', 'completed']
+      enum: ['pending', 'true', 'false']
     }],
     default: ['pending']
   }
 });
 
-module.exports = mongoose.model('Tasks', TaskSchema);
+module.exports = mongoose.model('Students', StudentSchema);

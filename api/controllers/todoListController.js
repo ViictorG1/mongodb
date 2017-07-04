@@ -2,56 +2,52 @@
 
 
 var mongoose = require('mongoose'),
-  Task = mongoose.model('Tasks');
+  Student = mongoose.model('Students');
 
-exports.list_all_tasks = function(req, res) {
-  Task.find({}, function(err, task) {
+exports.list_all_students = function(req, res) {
+  Student.find({}, function(err, student) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(student);
+  });
+};
+
+exports.create_a_student = function(req, res) {
+  var new_student = new Student(req.body);
+  new_student.save(function(err, student) {
+    if (err)
+      res.send(err);
+    res.json(student);
   });
 };
 
 
-
-
-exports.create_a_task = function(req, res) {
-  var new_task = new Task(req.body);
-  new_task.save(function(err, task) {
+exports.read_a_student = function(req, res) {
+  
+  Student.findById({_id: req.params.studentId }, function(err, student) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(student);
   });
 };
 
 
-exports.read_a_task = function(req, res) {
-  Task.findById(req.params.taskId, function(err, task) {
+exports.update_a_student = function(req, res) {
+  Student.findOneAndUpdate({_id: req.params.studentId}, req.body, {new: true}, function(err, student) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(student);
   });
 };
 
 
-exports.update_a_task = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, function(err, task) {
+exports.delete_a_student = function(req, res) {
+  Student.remove({
+    _id: req.params.studentId
+  }, function(err, student) {
     if (err)
       res.send(err);
-    res.json(task);
-  });
-};
-
-
-exports.delete_a_task = function(req, res) {
-
-
-  Task.remove({
-    _id: req.params.taskId
-  }, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    res.json({ message: 'Student successfully deleted' });
   });
 };
 
