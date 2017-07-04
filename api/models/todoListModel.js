@@ -13,10 +13,7 @@ var StudentSchema = new Schema({
     default: 0
   },
   status: {
-    type: [{
-      type: String,
-      enum: ['pending', 'true', 'false']
-    }],
+    type: String,
     default: ['pending']
   }
 });
