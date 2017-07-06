@@ -8,13 +8,17 @@ var StudentSchema = new Schema({
     type: String,
     Required: 'Kindly enter the name of the Student'
   },
-  average: {
+  nota1: {
     type: Number,
-    default: 0
+    default: 0.0
   },
-  status: {
-    type: String,
-    default: ['pending']
+  nota2: {
+    type: Number,
+    default: 0.0
+  },
+  nota3: {
+    type: Number,
+    default: 0.0
   }
 });
 
